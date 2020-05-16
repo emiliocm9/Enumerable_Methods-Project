@@ -6,6 +6,9 @@ test_array3 = %w[f g h i]
 
 # my_each
 p 'my_each'
+#p test_array1.each
+#test_array2.each { |x| p x }
+#test_array3.each { |x| p x }
 test_array1.my_each { |x| p x }
 test_array2.my_each { |x| p x }
 p test_array3.my_each

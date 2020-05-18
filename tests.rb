@@ -1,4 +1,4 @@
-require './enumerable_methods.rb'
+# require './enumerable_methods.rb'
 
 test_array1 = [11, 2, 3, 56]
 test_array2 = %w(a b c d)

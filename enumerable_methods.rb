@@ -1,3 +1,5 @@
+# rubocop:disable Style/CaseEquality, Style/CaseEquality
+
 module Enumerable
     def my_each
         return to_enum unless block_given?
@@ -14,7 +16,6 @@ module Enumerable
           i += 1
         end
     end
-    
 
     def my_each_with_index
         return to_enum unless block_given?
@@ -34,21 +35,33 @@ module Enumerable
         end
     end
 
-    def my_select 
+    def my_select
         return to_enum unless block_given?
-        array = []
         if self.is_a?(Hash)
-        my_each { |i| array << i if yield(i) }
-
-        else 
-            my_each { |i| array << i if yield(i) }
+            hash = {}
+            my_each {|i, value|  hash[i] = value if yield i, value}
+        else
+            hash = []
+            my_each {|i| hash << i if yield(i)}
         end
-        array
+        hash
     end
 
+    def my_all?( par = nil )
+      if block_given?
+        my_each { |item| return true ? yield(item) : false }
+      elsif par.class == Class
+        self.my_each { |item| return false unless item.class == par }
+      elsif par.class == Regexp
+        self.my_each { |item| return false unless item =~ par}
+      else
+        self.my_each {|item| return false unless item}
+      end
+      true
+    end
 
-        color = [2, 5, 8, 7, 9, 10, 12, 14]
-        p color.my_select {|item| item.even?}
+        color = [1, 2, 5, 4, 8]
+        p color.my_all?
       #h = {1 => "territorio", 2 => "escolar", 3 => "tercer", 4 => "dimension"}
       #k = ["tengo", "ganas", "de", "dormir"]
       #j = [1, 2, 3, 8, 4, 6, 9, 12]

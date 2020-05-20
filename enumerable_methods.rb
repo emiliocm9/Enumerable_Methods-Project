@@ -47,21 +47,51 @@ module Enumerable
         hash
     end
 
-    def my_all?( par = nil )
+    def my_all?(param = nil)
       if block_given?
         my_each { |item| return true ? yield(item) : false }
-      elsif par.class == Class
-        self.my_each { |item| return false unless item.class == par }
-      elsif par.class == Regexp
-        self.my_each { |item| return false unless item =~ par}
+      elsif param.class == Class
+        self.my_each { |item| return false unless item.class == param }
+      elsif param.class == Regexp
+        self.my_each { |item| return false unless item =~ param}
       else
         self.my_each {|item| return false unless item}
       end
       true
     end
 
-        color = [1, 2, 5, 4, 8]
-        p color.my_all?
+    def my_any?(par = nil)
+      if block_given?
+        my_each {|item| return true if yield(item)}
+      elsif par.class == Class
+        my_each {|item| return true if item.is_a? par}
+      elsif par.class == Regexp
+        my_each {|item| return true if item =~ par}
+      elsif par
+        my_each {|item| return true if item == par}
+      else
+        my_each {|item| return true if item}
+      end
+        false
+    end
+
+    def my_none?(var = nil)
+        if block_given?
+          my_each {|item| return false if yield(item)}
+        elsif var.class == Class
+          my_each {|item| return false if item.is_a? var}
+        elsif var.class == Regexp
+          my_each { |item| return false if item =~ var}
+        elsif var
+          my_each {|item| return false if item == var}
+        else
+          my_each {|item| return false if item}
+        end
+        true
+    end
+
+        color = [nil, false, nil, false]
+        p color.my_none?
       #h = {1 => "territorio", 2 => "escolar", 3 => "tercer", 4 => "dimension"}
       #k = ["tengo", "ganas", "de", "dormir"]
       #j = [1, 2, 3, 8, 4, 6, 9, 12]

@@ -54,6 +54,8 @@ module Enumerable
         self.my_each { |item| return false unless item.class == param }
       elsif param.class == Regexp
         self.my_each { |item| return false unless item =~ param}
+      elsif param
+        self.my_each {|item| return false unless item == param}
       else
         self.my_each {|item| return false unless item}
       end
@@ -90,8 +92,8 @@ module Enumerable
         true
     end
 
-        color = [nil, false, nil, false]
-        p color.my_none?
+        color = [1, 2]
+        p color.my_all?(1)
       #h = {1 => "territorio", 2 => "escolar", 3 => "tercer", 4 => "dimension"}
       #k = ["tengo", "ganas", "de", "dormir"]
       #j = [1, 2, 3, 8, 4, 6, 9, 12]

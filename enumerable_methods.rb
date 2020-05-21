@@ -92,8 +92,36 @@ module Enumerable
         true
     end
 
-        color = [1, 2]
-        p color.my_all?(1)
+    def my_count(var = nil)
+      new_array =[]
+      i = 1
+      if var
+        my_each {|item| new_array << item if item == var}
+        new_array = new_array.length
+      elsif block_given?
+        my_each {|item| new_array << item if yield(item)}
+        new_array = new_array.length
+      else
+        while i < length + 1
+          new_array << i
+          i += 1
+        end
+       new_array = new_array[-1]
+      end
+      new_array
+    end
+
+    def my_map(var = nil)
+      new_array = []
+      i = 0
+      .to_i.to_a
+      if block_given?
+        my_each {|item| new_array << yield(item)}
+        new_array
+      end
+    end
+        color = (0..9)
+       p color.my_map {|item| item * 2}
       #h = {1 => "territorio", 2 => "escolar", 3 => "tercer", 4 => "dimension"}
       #k = ["tengo", "ganas", "de", "dormir"]
       #j = [1, 2, 3, 8, 4, 6, 9, 12]

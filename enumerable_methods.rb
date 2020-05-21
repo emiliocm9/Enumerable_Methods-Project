@@ -49,45 +49,45 @@ module Enumerable
 
     def my_all?(param = nil)
       if block_given?
-        my_each { |item| return true ? yield(item) : false }
+        to_a.my_each { |item| return true ? yield(item) : false }
       elsif param.class == Class
-        self.my_each { |item| return false unless item.class == param }
+        to_a.my_each { |item| return false unless item.class == param }
       elsif param.class == Regexp
-        self.my_each { |item| return false unless item =~ param}
+        to_a.my_each { |item| return false unless item =~ param}
       elsif param
-        self.my_each {|item| return false unless item == param}
+        to_a.my_each {|item| return false unless item == param}
       else
-        self.my_each {|item| return false unless item}
+        to_a.my_each {|item| return false unless item}
       end
       true
     end
 
     def my_any?(par = nil)
       if block_given?
-        my_each {|item| return true if yield(item)}
+        to_a.my_each {|item| return true if yield(item)}
       elsif par.class == Class
-        my_each {|item| return true if item.is_a? par}
+        to_a.my_each {|item| return true if item.is_a? par}
       elsif par.class == Regexp
-        my_each {|item| return true if item =~ par}
+        to_a.my_each {|item| return true if item =~ par}
       elsif par
-        my_each {|item| return true if item == par}
+        to_a.my_each {|item| return true if item == par}
       else
-        my_each {|item| return true if item}
+        to_a.my_each {|item| return true if item}
       end
         false
     end
 
     def my_none?(var = nil)
         if block_given?
-          my_each {|item| return false if yield(item)}
+          to_a.my_each {|item| return false if yield(item)}
         elsif var.class == Class
-          my_each {|item| return false if item.is_a? var}
+          to_a.my_each {|item| return false if item.is_a? var}
         elsif var.class == Regexp
-          my_each { |item| return false if item =~ var}
+          to_a.my_each { |item| return false if item =~ var}
         elsif var
-          my_each {|item| return false if item == var}
+          to_a.my_each {|item| return false if item == var}
         else
-          my_each {|item| return false if item}
+          to_a.my_each {|item| return false if item}
         end
         true
     end
@@ -113,15 +113,35 @@ module Enumerable
 
     def my_map(var = nil)
       new_array = []
-      i = 0
-      .to_i.to_a
       if block_given?
-        my_each {|item| new_array << yield(item)}
+       to_a.my_each {|item| new_array << yield(item)}
         new_array
       end
     end
-        color = (0..9)
-       p color.my_map {|item| item * 2}
+
+    def my_inject(*args)
+      arr = to_a.dup
+      return raise ArgumentError, 'Given arguments 0, expected 1' if args.empty? && !block_given?
+  
+      first = args.length == 2 && arr.respond_to?(args[1]) || args.length == 1 && block_given? ? args[0] : arr.shift
+      sym = if args.length == 2
+              args[1]
+            elsif !block_given? && args.length == 1 && arr.respond_to?(args[0])
+              args[0]
+            else
+              false
+            end
+      arr.my_each { |item| first = sym ? first.send(sym, item) : yield(first, item) }
+      first
+    end
+  
+    def multiply_els(arrays)
+      arrays.my_inject(:*)
+    end
+
+    search = [25, 4, 8, 9]
+    p search.my_map {|item| item * 2}
+      
       #h = {1 => "territorio", 2 => "escolar", 3 => "tercer", 4 => "dimension"}
       #k = ["tengo", "ganas", "de", "dormir"]
       #j = [1, 2, 3, 8, 4, 6, 9, 12]

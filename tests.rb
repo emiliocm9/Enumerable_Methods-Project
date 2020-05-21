@@ -99,7 +99,7 @@ p 'my_inject'
 # Sum some numbers
 p (5..10).my_inject(:+) #=> 45
 # Same using a block and inject
-# p (5..10).my_inject { |sum, n| sum + n } #=> 45
+ p (5..10).my_inject { |sum, n| sum + n } #=> 45
 # Multiply some numbers
 p (5..10).my_inject(1, :*) #=> 151200
 # Same using a block

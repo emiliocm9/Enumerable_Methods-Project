@@ -127,7 +127,7 @@ module Enumerable
   def my_inject(*args)
     arr = to_a.dup
     return raise ArgumentError, 'Given arguments 0, expected 1' if args.empty? && !block_given?
-    
+
     first = args.length == 2 && arr.respond_to?(args[1]) || args.length == 1 && block_given? ? args[0] : arr.shift
     sym = if args.length == 2
             args[1]

@@ -38,7 +38,8 @@ module Enumerable
 
   def my_select
     return to_enum unless block_given?
-    if self.is_a?(Hash)
+
+    if is_a?(Hash)
       hash = {}
       my_each {|i, value|  hash[i] = value if yield i, value}
     else

@@ -141,4 +141,4 @@ module Enumerable
   end
 end
 
-# rubocop:enable
+# rubocop:enable Style/CaseEquality

@@ -4,14 +4,15 @@
 module Enumerable
   def my_each
     return to_enum unless block_given?
+
     i = 0
     j = 0
     while i < length
-    if is_a?(Array)
+      if is_a?(Array)
         yield self[i]
-    elsif is_a?(Hash)
-      yield keys[j], values[j]
-    end
+      elsif is_a?(Hash)
+        yield keys[j], values[j]
+      end
       j += 1
       i += 1
     end

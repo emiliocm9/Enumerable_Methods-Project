@@ -140,4 +140,4 @@ module Enumerable
   end
 end
 
-# rubocop:disable
+# rubocop:enable

@@ -1,4 +1,4 @@
-# rubocop:disable Style/CaseEquality
+# rubocop:disable Style/CaseEquality, Style/StringLiterals
 # frozen_string_literal: true
 
 module Enumerable
@@ -33,7 +33,7 @@ module Enumerable
         i += 1
       end
   end
-    
+
   def my_select
     return to_enum unless block_given?
     if self.is_a?(Hash)
@@ -135,10 +135,10 @@ module Enumerable
     arr.my_each { |item| first = sym ? first.send(sym, item) : yield(first, item) }
     first
   end
-  
+
   def multiply_els(arrays)
     arrays.my_inject(:*)
   end
 end
 
-# rubocop:enable Style/CaseEquality
+# rubocop:enable Style/CaseEquality, Style/StringLiterals

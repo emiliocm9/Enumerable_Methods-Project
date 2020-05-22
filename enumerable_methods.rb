@@ -81,15 +81,15 @@ module Enumerable
 
   def my_none?(var = nil)
     if block_given?
-      to_a.my_each {|item| return false if yield(item)}
+      to_a.my_each { |item| return false if yield(item) }
     elsif var.class == Class
-      to_a.my_each {|item| return false if item.is_a? var}
+      to_a.my_each { |item| return false if item.is_a? var }
     elsif var.class == Regexp
-      to_a.my_each { |item| return false if item =~ var}
+      to_a.my_each { |item| return false if item =~ var }
     elsif var
-      to_a.my_each {|item| return false if item == var}
+      to_a.my_each { |item| return false if item == var }
     else
-      to_a.my_each {|item| return false if item}
+      to_a.my_each { |item| return false if item }
     end
     true
   end
@@ -98,17 +98,17 @@ module Enumerable
     new_array =[]
     i = 1
     if var
-      my_each {|item| new_array << item if item == var}
+      my_each { |item| new_array << item if item == var }
       new_array = new_array.length
     elsif block_given?
-      my_each {|item| new_array << item if yield(item)}
+      my_each { |item| new_array << item if yield(item) }
       new_array = new_array.length
     else
       while i < length + 1
         new_array << i
         i += 1
       end
-     new_array = new_array[-1]
+    new_array = new_array[-1]
     end
     new_array
   end
@@ -116,10 +116,10 @@ module Enumerable
   def my_map(var = nil)
     new_array = []
     if block_given?
-      to_a.my_each {|item| new_array << yield(item)}
+      to_a.my_each { |item| new_array << yield(item) }
       new_array
     elsif var == Proc
-      to_a.my_each {|item| new_array << proc.call(item)}
+      to_a.my_each { |item| new_array << proc.call(item) }
       new_array
     end
   end
@@ -127,14 +127,15 @@ module Enumerable
   def my_inject(*args)
     arr = to_a.dup
     return raise ArgumentError, 'Given arguments 0, expected 1' if args.empty? && !block_given?
+    
     first = args.length == 2 && arr.respond_to?(args[1]) || args.length == 1 && block_given? ? args[0] : arr.shift
     sym = if args.length == 2
-      args[1]
-    elsif !block_given? && args.length == 1 && arr.respond_to?(args[0])
-      args[0]
-    else
-      false
-    end
+            args[1]
+          elsif !block_given? && args.length == 1 && arr.respond_to?(args[0])
+            args[0]
+          else
+            false
+          end
     arr.my_each { |item| first = sym ? first.send(sym, item) : yield(first, item) }
     first
   end

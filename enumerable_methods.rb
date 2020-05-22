@@ -76,7 +76,7 @@ module Enumerable
     else
       to_a.my_each { |item| return true if item }
     end
-      false
+    false
   end
 
   def my_none?(var = nil)

@@ -19,7 +19,7 @@ This project was about to rebuild some Ruby methods using our own code. The chal
 
     my_inject
 
-![PROJECT:  Enumerable Methods](https://github.com/emiliocm9/Bubble_Sort-Project/blob/develop/ProjectSS.png)
+![PROJECT:  Enumerable Methods](https://github.com/emiliocm9/Enumerable_Methods-Project/blob/feature/ProjectSS.png)
 
 ## Built With
 

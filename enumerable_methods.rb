@@ -41,7 +41,7 @@ module Enumerable
 
     if is_a?(Hash)
       hash = {}
-      my_each { |i, value|  hash[i] = value if yield i, value }
+      my_each { |i, value| hash[i] = value if yield i, value }
     else
       hash = []
       my_each { |i| hash << i if yield(i) }
@@ -51,15 +51,15 @@ module Enumerable
 
   def my_all?(param = nil)
     if block_given?
-      to_a.my_each { |item| return true ? yield(item) : false }
+      to_a.my_each { |item| return false unless yield(item) }
     elsif param.class == Class
       to_a.my_each { |item| return false unless item.class == param }
     elsif param.class == Regexp
-      to_a.my_each { |item| return false unless item =~ param}
+      to_a.my_each { |item| return false unless item =~ param }
     elsif param
-      to_a.my_each {|item| return false unless item == param}
+      to_a.my_each { |item| return false unless item == param }
     else
-      to_a.my_each {|item| return false unless item}
+      to_a.my_each { |item| return false unless item }
     end
     true
   end

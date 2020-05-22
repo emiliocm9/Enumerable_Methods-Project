@@ -139,3 +139,5 @@ module Enumerable
     arrays.my_inject(:*)
   end
 end
+
+# rubocop:disable

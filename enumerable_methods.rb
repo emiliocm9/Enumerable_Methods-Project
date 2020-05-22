@@ -41,10 +41,10 @@ module Enumerable
 
     if is_a?(Hash)
       hash = {}
-      my_each {|i, value|  hash[i] = value if yield i, value}
+      my_each { |i, value|  hash[i] = value if yield i, value }
     else
       hash = []
-      my_each {|i| hash << i if yield(i)}
+      my_each { |i| hash << i if yield(i) }
     end
     hash
   end

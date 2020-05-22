@@ -66,15 +66,15 @@ module Enumerable
 
   def my_any?(par = nil)
     if block_given?
-      to_a.my_each {|item| return true if yield(item)}
+      to_a.my_each { |item| return true if yield(item) }
     elsif par.class == Class
-      to_a.my_each {|item| return true if item.is_a? par}
+      to_a.my_each { |item| return true if item.is_a? par }
     elsif par.class == Regexp
-      to_a.my_each {|item| return true if item =~ par}
+      to_a.my_each { |item| return true if item =~ par }
     elsif par
-      to_a.my_each {|item| return true if item == par}
+      to_a.my_each { |item| return true if item == par }
     else
-      to_a.my_each {|item| return true if item}
+      to_a.my_each { |item| return true if item }
     end
       false
   end

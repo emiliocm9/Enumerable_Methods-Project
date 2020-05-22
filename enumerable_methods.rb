@@ -1,6 +1,3 @@
-# rubocop:disable Style/CaseEquality, Style/StringLiterals
-# frozen_string_literal: true
-
 module Enumerable
   def my_each
     return to_enum unless block_given?
@@ -144,5 +141,3 @@ module Enumerable
     arrays.my_inject(:*)
   end
 end
-
-# rubocop:enable Style/CaseEquality, Style/StringLiterals

@@ -20,19 +20,20 @@ module Enumerable
 
   def my_each_with_index
     return to_enum unless block_given?
-      i = 0
-      j = 0
-      index = 0
-      while i < length
+
+    i = 0
+    j = 0
+    index = 0
+    while i < length
       if is_a?(Array)
         yield self[i], index
       elsif is_a?(Hash)
         yield keys[j], values[j], index
       end
-        index += 1
-        j += 1
-        i += 1
-      end
+      index += 1
+      j += 1
+      i += 1
+    end
   end
 
   def my_select

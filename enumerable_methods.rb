@@ -118,6 +118,8 @@ module Enumerable
     elsif var == Proc
       to_a.my_each { |item| new_array << proc.call(item) }
       new_array
+    else
+      to_enum
     end
   end
 

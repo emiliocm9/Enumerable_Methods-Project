@@ -24,7 +24,7 @@ This project was about to rebuild some Ruby methods using our own code. The chal
 ## How to run tests:
 
 - Download this repository locally.
-- Install Rspec using rspec.
+- Install Rspec using gem.
 - Run rspec on your command line to check your tests outcome. 
 
 ## Built With

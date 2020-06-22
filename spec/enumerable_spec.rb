@@ -26,4 +26,20 @@ describe Enumerable do
       expect(new_arr.my_each_with_index.class).to eql(Enumerator)
     end
   end
+
+  describe '#my_select' do
+    let(:array) { %w[a b c d e f] }
+
+    it 'Selects the even numbers from the original array and returns the selected array' do
+      expect([1, 2, 3, 4, 5].my_select(&:even?)).to eql([2, 4])
+    end
+
+    it 'Selects an array given a regex expression' do
+      expect(array.my_select { |v| v =~ /[aeiou]/ }).to eql(%w[a e])
+    end
+
+    it 'returns an enumerable when missing block' do
+      expect(array.my_select.class).to eql(Enumerator)
+    end
+  end
 end

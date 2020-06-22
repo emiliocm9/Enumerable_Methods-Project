@@ -91,7 +91,7 @@ describe Enumerable do
     end
   end
 
-  describe 'my_count' do
+  describe '#my_count' do
     let(:array) { %w[9 2 5 2 9 2 1].map(&:to_i) }
 
     it 'My count will return the length of my array if a parameter is not given' do
@@ -107,7 +107,7 @@ describe Enumerable do
     end
   end
 
-  describe 'my_map' do
+  describe '#my_map' do
     let(:array) { %w[count bear cat fish lion] }
     let(:range) { (1..4).to_a }
     let(:numbers) { %w[1 5 8 7 9 6 5 2 3] }
@@ -122,6 +122,30 @@ describe Enumerable do
 
     it 'My map will return a new array with the results of the conditions given in the parameter applied on every item' do
       expect(numbers.my_map(&:to_i)).to eql([1, 5, 8, 7, 9, 6, 5, 2, 3])
+    end
+  end
+
+  describe '#my_inject' do
+    let(:array) { %w[cat sheep bear] }
+    let(:range) { (5..10).to_a }
+
+    it 'My inject will add numbers from 5 to 10 properly to the returned variable using a symbol as parameter' do
+      expect(range.my_inject(:+)).to eql(45)
+    end
+
+    it 'My inject will add numbers from 5 to 10 properly to the returned variables using a block' do
+      expect(range.my_inject { |sum, n| sum + n }).to eql(45)
+    end
+
+    it 'My inject will multiply numbers given a starting accumulator value' do
+      expect(range.inject(1) { |product, n| product * n }).to eql(151_200)
+    end
+
+    it 'My inject will return the longest word in my array' do
+      longest = array.my_inject do |memo, word|
+        memo.length > word.length ? memo : word
+      end
+      expect(longest).to eql('sheep')
     end
   end
 end

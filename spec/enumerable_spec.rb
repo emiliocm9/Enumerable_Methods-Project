@@ -90,4 +90,38 @@ describe Enumerable do
       expect(array.my_none?(/t/)).to eql(false)
     end
   end
+
+  describe 'my_count' do
+    let(:array) { %w[9 2 5 2 9 2 1].map(&:to_i) }
+
+    it 'My count will return the length of my array if a parameter is not given' do
+      expect(array.my_count).to eql(array.length)
+    end
+
+    it 'My count will return the number of items that are equal to the parameter given' do
+      expect(array.my_count(2)).to eql(3)
+    end
+
+    it 'My count will return the number of items that comply with the condition given inside a block' do
+      expect(array.my_count { |number| number % 3 == 0 }).to eql(2)
+    end
+  end
+
+  describe 'my_map' do
+    let(:array) { %w[count bear cat fish lion] }
+    let(:range) { (1..4).to_a }
+    let(:numbers) { %w[1 5 8 7 9 6 5 2 3] }
+
+    it 'My map will return a new array with the results of the conditions given inside a block applied on every item' do
+      expect(range.my_map { |number| number * number }).to eql([1, 4, 9, 16])
+    end
+
+    it 'My map will return the concat result of the conditions given inside the block applied on each item' do
+      expect(array.my_map { |word| word + 'item' }).to eql(%w[countitem bearitem catitem fishitem lionitem])
+    end
+
+    it 'My map will return a new array with the results of the conditions given in the parameter applied on every item' do
+      expect(numbers.my_map(&:to_i)).to eql([1, 5, 8, 7, 9, 6, 5, 2, 3])
+    end
+  end
 end

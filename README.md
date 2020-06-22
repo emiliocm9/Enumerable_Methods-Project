@@ -25,12 +25,14 @@ This project was about to rebuild some Ruby methods using our own code. The chal
 
 - Download this repository locally.
 - Install Rspec using gem.
-- Run rspec on your command line to check your tests outcome. 
+- Run rspec on your command line to check your tests outcome.
+- Check out the methods that has passed the tests. If you want to get the documentation of every test case you can run the follow command "rspec --format documentation"
 
 ## Built With
 
 - Ruby
 - Visual Studio Code
+- RSpec
 
 ## Authors
 

@@ -42,4 +42,20 @@ describe Enumerable do
       expect(array.my_select.class).to eql(Enumerator)
     end
   end
+
+  describe '#my_all?' do
+    let(:array) { %w[ant bear cat] }
+
+    it 'My all checks correctly if the word length on all of its items is for a specific size' do
+      expect(array.my_all? { |word| word.length >= 3 }).to eql(true)
+    end
+
+    it 'My all checks correctly if the word length on all of its items is for a specific size' do
+      expect(array.my_all? { |word| word.length >= 5 }).to eql(false)
+    end
+
+    it 'All my elements contain a specific character' do
+      expect(array.my_all?(/t/)).to eql(false)
+    end
+  end
 end

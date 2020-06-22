@@ -57,6 +57,14 @@ describe Enumerable do
     it 'All my elements contain a specific character' do
       expect(array.my_all?(/t/)).to eql(false)
     end
+
+    it 'Evaluate my all without any block given' do
+      expect([].my_all?).to eql(true)
+    end
+
+    it 'Evaluates my all with a class as a parameter' do
+      expect(array.my_all?(String)).to eql(true)
+    end
   end
 
   describe '#my_any?' do
@@ -73,6 +81,14 @@ describe Enumerable do
     it 'Any of my elements contain a specific character' do
       expect(array.my_any?(/t/)).to eql(true)
     end
+
+    it 'Evaluate my any without any block given' do
+      expect([].my_any?).to eql(false)
+    end
+
+    it 'Evaluates my any with a class as a parameter' do
+      expect(array.my_any?(String)).to eql(true)
+    end
   end
 
   describe '#my_none?' do
@@ -88,6 +104,14 @@ describe Enumerable do
 
     it 'None of my elements contain a specific character' do
       expect(array.my_none?(/t/)).to eql(false)
+    end
+
+    it 'Evaluate my none without any block given' do
+      expect([].my_none?).to eql(true)
+    end
+
+    it 'Evaluates my none with a class as a parameter' do
+      expect(array.my_none?(String)).to eql(false)
     end
   end
 
@@ -122,6 +146,10 @@ describe Enumerable do
 
     it 'My map will return a new array with the results of the conditions given in the parameter applied on every item' do
       expect(numbers.my_map(&:to_i)).to eql([1, 5, 8, 7, 9, 6, 5, 2, 3])
+    end
+
+    it 'returns an enumerator when missing block' do
+      expect(range.my_map.class).to eql(Enumerator)
     end
   end
 

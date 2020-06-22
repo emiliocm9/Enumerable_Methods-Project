@@ -21,6 +21,12 @@ This project was about to rebuild some Ruby methods using our own code. The chal
 
 ![PROJECT:  Enumerable Methods](https://github.com/emiliocm9/Enumerable_Methods-Project/blob/master/ProjectSS.png)
 
+## How to run tests:
+
+- Download this repository locally.
+- Install Rspec using rspec.
+- Run rspec on your command line to check your tests outcome. 
+
 ## Built With
 
 - Ruby
@@ -33,6 +39,12 @@ This project was about to rebuild some Ruby methods using our own code. The chal
 - Github: [@emiliocm9](https://github.com/emiliocm9)
 - Twitter: [@emiliocm31](https://twitter.com/emiliocm31)
 - Email: [email](emilio.contreras97@gmail.com)
+
+👤 **Santiago Rodriguez**
+
+- Github: [@emiliocm9](https://github.com/santiagorodriguezbermudez)
+- Twitter: [@emiliocm31](https://twitter.com/srba87)
+- Email: [email](srba87@gmail.com)
 
 ## Show your support
 

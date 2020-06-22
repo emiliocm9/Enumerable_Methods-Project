@@ -58,4 +58,36 @@ describe Enumerable do
       expect(array.my_all?(/t/)).to eql(false)
     end
   end
+
+  describe '#my_any?' do
+    let(:array) { %w[ant bear cat] }
+
+    it 'My any will check if any of the items inside an array comply with the conditions' do
+      expect(array.my_any? { |i| i.length >= 3 }).to eql(true)
+    end
+
+    it 'My any will check if any of the items inside an array comply with the conditions' do
+      expect(array.my_any? { |word| word.length >= 5 }).to eql(false)
+    end
+
+    it 'Any of my elements contain a specific character' do
+      expect(array.my_any?(/t/)).to eql(true)
+    end
+  end
+
+  describe '#my_none?' do
+    let(:array) { %w[ant bear cat] }
+
+    it 'My none will check if none of the items inside an array comply with the condition' do
+      expect(array.my_none? { |word| word.length == 5 }).to eql(true)
+    end
+
+    it 'My none will check if none of the items inside an array comply with the conditions' do
+      expect(array.my_none? { |word| word.length >= 5 }).to eql(true)
+    end
+
+    it 'None of my elements contain a specific character' do
+      expect(array.my_none?(/t/)).to eql(false)
+    end
+  end
 end
